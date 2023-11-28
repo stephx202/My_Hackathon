@@ -1,0 +1,30 @@
+body{
+    align-items: center;
+    justify-content: center;
+    background-color: thistle;
+}
+#map{ 
+    height: 500px; 
+    width: 500px;
+    border: 20px solid pink;
+    margin-top: 20px ;
+    margin-left: 100px;
+    
+}
+
+#title{
+    font-size: 50px;
+    margin-left: 220px;
+    -webkit-text-fill-color:cornflowerblue;
+    -webkit-text-stroke-color: cornflowerblue;
+    -webkit-text-stroke-width: 4px;
+}
+
+#lowerText{
+    font-size: 20px;
+    margin-top: 29px;
+    margin-left: 130px;
+    -webkit-text-fill-color:rgb(56, 100, 184);
+    -webkit-text-stroke-color: rgb(56, 100, 184);
+    -webkit-text-stroke-width: 1px;
+}

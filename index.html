@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <!-- <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> -->
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+</head>
+<body>
+    <div id="title">Vacation Time</div>
+    <div id="map"></div>
+        <script> 
+        //set view and zoom lvl of map.   
+        const map = L.map('map').setView([20.211535995988527, -87.46472113364054], 10);
+        //small tiles that complete the map. arg 1 
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 20,
+            //need to add copyright attribution.
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        //add marker to geo coordinates
+        const marker = L.marker([20.211535995988527, -87.46472113364054]).addTo(map);
+
+
+        //add pop up for the itinerary (day 1) and set grids
+        var popupDay1 = L.popup().setLatLng([20.204683359438196, -87.46849150243584]).setContent("Day 1").openOn(map);
+        //add pop up for day 2 and set grids. open on map.
+        // var popupDay2 = L.popup()
+        // .setLatLng([20.21393098874982, -87.42908601183754])
+        // .setContent("Day 2")
+        // .openOn(map);
+        //var popup = L.popup()??
+        //function for the popup when clicked on current popup day
+        function onPopupClick(e) {
+            //check which popup day was clicked on (if statement) and update setContent
+            if(e.popup === popupDay1){
+                popupDay1.setContent("Day 1: Check-in at Native, Tulum Hotel and enjoy brunch at DelCielo!")
+            }
+                // }else if(e.popup === popupDay2){
+            //     popupDay2.setContent("Day 2: Head over to Playa Ruinas, a nice beautiful beach and enjoy the waters!")
+            // }
+            // popup
+            //     .setLatLng(e.latlng)
+            //     .setContent("Day 1: check-in at Native, Tulum Hotel.  ")
+            //     .openOn(map);
+        }
+
+        map.on('popupclick', onPopupClick);
+        //function when user clicks on popop, toggle between days (if statements)
+        function onMapClick(e) {
+            // if(map.hasLayer(popupDay1)){
+            //     map.removeLayer(popupDay1);
+            //     map.addLayer(popupDay2);
+            // }else{
+            //     map.removeLayer(popupDay2);
+            //     map.addLayer(popupDay1)
+            // }
+      popupDay1
+        .setLatLng(e.latlng)
+        .setContent("Day 1: Check-in at Native, Tulum Hotel and enjoy brunch at DelCielo!")
+        .openOn(map);
+        }
+        map.on('click', onMapClick);
+    </script>
+    <div id="lowerText">Welcome to your next Vacation at
+        <br>Tulum, MX!
+        <br> Please click on the current day to see what is planned for that day!
+    </div>
+
+</body>
+</html>
